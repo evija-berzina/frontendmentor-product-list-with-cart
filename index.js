@@ -2,31 +2,35 @@ fetch('/data.json')
     .then(res => res.json())
     .then(data => {
 
+      const productCard = document.querySelector('.products-js');
+      let productsHTML = '';
 
-        const productCard = document.querySelector('.product-card-js');
-        const cartButton = document.querySelector('.add-to-cart-btn-js');
-        let productsHTML = '';
-        //  '';
-        data.forEach((product) => {
-          // console.log(product.image.mobile)
-          productsHTML = productCard.innerHTML + `
-          <div>
-            <div class="image-btn-container flex">
-              <img class="image" src=${product.image.mobile} alt="">
-              <button class="add-to-cart-btn flex add-to-cart-btn-js">
+      data.forEach((product) => {
+        // const product = data[index];
+        productsHTML += `
+          <article class="product-card">
+            <div class="product-card__img-container flex">
+              <picture>
+                <source srcset="${product.image.desktop}" media="(min-width: 45rem)" />
+                <source srcset="${product.image.tablet}" media="(min-width: 35rem)" />
+                <img class="product-card__image" src="${product.image.mobile}" width="654" height="424" alt="${product.name}">
+              </picture>
+              <button class="product-card__btn flex product-btn-js">
                 <img src="assets/images/icon-add-to-cart.svg" alt="">
                 <span>Add to Cart</span>
               </button>
             </div>
-            <div class="product-text-container flex">
-              <p class="text-pale-rose category-text-size">${product.category}</p>
-              <p class="text-dark-rose fw-600">${product.name}</p>
-              <p class="text-red fw-600"><span>&#36</span>${(product.price).toFixed(2)}</p>
+            <div class="product-card__content flex">
+              <p class="product-card__category">${product.category}</p>
+              <p class="product-card__name">${product.name}</p>
+              <p class="product-card__price">
+                <span>&#36</span>${(product.price).toFixed(2)}
+              </p>
             </div>
-          </div>
-          `;
-          productCard.innerHTML = productsHTML
-          // console.log(productsHTML);
-        });
-        
+          </article>
+        `;
+      });
+
+      productCard.innerHTML = productsHTML;
+          
 });

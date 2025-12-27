@@ -1,3 +1,42 @@
+/* --------------------------- */
+/* Custom properties           */
+/* --------------------------- */
+
+:root {
+  /* colors */
+  --clr-red: 14 86% 42%;
+  --clr-green: 159 69% 38%;
+
+  --clr-rose50: 20 50% 98%;
+  --clr-rose100: 13 31% 94%;
+  --clr-rose300: 14 25% 72%;
+  --clr-rose400: 7 20% 60%;
+  --clr-rose500: 12 20% 44%;
+  --clr-rose900: 14 65% 9%;
+
+  /* font size */
+  --fs-800: 3.5rem;
+  --fs-700: 1.5rem;
+  --fs-600: 1rem;
+  --fs-500: 1rem;
+  --fs-400: 0.9375rem;
+  --fs-300: 1rem;
+  --fs-200: 0.875rem;
+  --fs-100: 0.75rem;
+
+  /* font family */
+  --ff-red-hat-text: "Red Hat Text", sans-serif;
+
+  /* font-weight */
+  --fw-400: 400;
+  --fw-600: 600;
+  --fw-700: 700;
+}
+
+/* --------------------------- */
+/* Fonts                       */
+/* --------------------------- */
+
 @font-face {
   font-display: swap;
   font-family: 'Red Hat Text';
@@ -22,91 +61,118 @@
   src: url('assets/fonts/red-hat-text-v19-latin-700.woff2') format('woff2');
 }
 
-* {
+/* --------------------------- */
+/* Reset                       */
+/* --------------------------- */
+
+/* https://piccalil.li/blog/a-modern-css-reset/ */
+
+/* Box sizing */
+*,
+*::before,
+*::after {
   box-sizing: border-box;
+  outline: 1px solid red;
+}
+
+/* Reset margins */
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+figure,
+picture {
   margin: 0;
 }
 
-img, picture {
-  display: block;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    font-weight: 400;
+}
+
+/* set up the body */
+body {
+  font-family: var(--ff-red-hat-text);
+  font-size: var(--fs-300);
+  color: hsl(var(--clr-rose900));
+  background-color: hsl(var(--clr-rose100));
+  font-weight: var(--fw-700);
+  padding: 1.5rem;
+
+  /* display: grid;
+  grid-template-rows: min-content 1fr; */
+}
+
+/* make images easier to work with */
+img,
+picture {
   max-width: 100%;
+  height: auto;
+  display: block;
 }
 
-:root {
-  /* colors */
-  --clr-red: 14 86% 42%;
-  --clr-green: 159 69% 38%;
-
-  --clr-rose50: 20 50% 98%;
-  --clr-rose100: 13 31% 94%;
-  --clr-rose300: 14 25% 72%;
-  --clr-rose400: 7 20% 60%;
-  --clr-rose500: 12 20% 44%;
-  --clr-rose900: 14 65% 9%;
-
-  /* font size */
-  --fs-products: 0.75rem;
-
-  /* font family */
-  --ff-serif: "Red Hat Text", sans-serif;
-
-  /* font-weight */
-  --fw-400: 400;
-  --fw-600: 600;
-  --fw-700: 700;
+/* make form elements easier to work with */
+input,
+button,
+textarea,
+select {
+  font: inherit;
 }
+
+/* remove animations for people who've turned them off */
+@media (prefers-reduced-motion: reduce) {  
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* --------------------------- */
+/* Utility classes             */
+/* --------------------------- */
 
 .flex {
   display: flex;
 }
 
-.text-red {
-  color: hsl(var(--clr-red));
-}
-
-.text-pale-rose {
-  color: hsl(var(--clr-rose500));
-}
-
-.text-dark-rose {
-  color: hsl(var(--clr-rose900));
-}
-
-.category-text-size {
-  font-size: var(--fs-products);
-}
-
-.fw-600 {
-  font-weight: 600;
-}
-
-body {
-  background-color: hsl(var(--clr-rose100));
-  font-family: var(--ff-serif);
-  padding: 1.5rem;
-}
+/* --------------------------- */
+/* Components                  */
+/* --------------------------- */
 
 .title {
   padding-block-end: 1.5rem;
+  color: hsl(var(--clr-rose900));
+  font-weight: var(--fw-700);
 }
 
-.product-card {
+.products {
   flex-direction: column;
   gap: 1.5rem;
   padding-block-end: 1.5rem;
 }
 
-.image-btn-container {
+.product-card__img-container {
   position: relative;
   justify-content: center;
 }
 
-.image {
+.product-card__image {
   border-radius: 10px;
-  /* max-width: 327px; */
 }
 
-.add-to-cart-btn {
+.product-card__btn {
   position: absolute;
   bottom: -16px;
   justify-content: center;
@@ -122,14 +188,29 @@ body {
   cursor: pointer;
 }
 
-.add-to-cart-btn span {
+.product-card__btn span {
   align-self: center;
 }
 
-.product-text-container {
+.product-card__content {
   flex-direction: column;
   gap: 0.25rem;
   padding-block-start: 2rem;
+}
+
+.product-card__category {
+  color: hsl(var(--clr-rose500));
+  font-size: var(--fs-200);
+}
+
+.product-card__name {
+  color: hsl(var(--clr-rose900));
+  font-weight: var(--fw-600);
+}
+
+.product-card__price {
+  color: hsl(var(--clr-red));
+  font-weight: var(--fw-600);
 }
 
 .cart {
@@ -138,11 +219,26 @@ body {
   border-radius: 10px;
 }
 
-.cart img {
-  justify-self: center;
+.cart__title {
+  color: hsl(var(--clr-red));
+  font-weight: var(--fw-700);
+}
+
+.cart__img {
   padding-block: 1rem;
 }
 
-.cart p {
+.cart__text {
   text-align: center;
+  font-size: var(--fs-200);
+  font-weight: var(--fw-600);
+  color: hsl(var(--clr-rose500));
+}
+
+@media (min-width: 35rem) {
+
+}
+
+@media (min-width: 45rem) {
+  
 }
