@@ -13,10 +13,16 @@ This means all the styles are contained in these files:
 If your app fully supports variable fonts, you can now pick intermediate styles
 that aren’t available as static fonts. Not all apps support variable fonts, and
 in those cases you can use the static font files for Red Hat Text:
-
+  static/RedHatText-Light.ttf
   static/RedHatText-Regular.ttf
+  static/RedHatText-Medium.ttf
   static/RedHatText-SemiBold.ttf
   static/RedHatText-Bold.ttf
+  static/RedHatText-LightItalic.ttf
+  static/RedHatText-Italic.ttf
+  static/RedHatText-MediumItalic.ttf
+  static/RedHatText-SemiBoldItalic.ttf
+  static/RedHatText-BoldItalic.ttf
 
 Get started
 -----------
