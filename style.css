@@ -172,7 +172,8 @@ select {
   border-radius: 10px;
 }
 
-.product-card__btn {
+.product-card__btn,
+.quantity-controls {
   position: absolute;
   bottom: -16px;
   justify-content: center;
@@ -186,6 +187,19 @@ select {
   font-weight: var(--fw-600);
   background-color: hsl(var(--clr-rose50));
   cursor: pointer;
+}
+
+.quantity-controls {
+  background-color: hsl(var(--clr-red));
+  color: hsl(var(--clr-rose50));
+}
+
+.decrease-btn,
+.increase-btn {
+  background-color: hsl(var(--clr-red));
+  border: solid 1px hsl(var(--clr-rose50));
+  aspect-ratio: 1;
+  border-radius: 50%;
 }
 
 .product-card__btn span {
