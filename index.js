@@ -27,7 +27,10 @@ fetch('/data.json')
                 <picture>
                   <source srcset="${product.image.desktop}" media="(min-width: 45rem)" />
                   <source srcset="${product.image.tablet}" media="(min-width: 35rem)" />
-                  <img class="product-card__image" src="${product.image.mobile}" width="654" height="424" alt="${product.name}">
+                  ${ product.quantity === 0
+                  ? `<img class="product-card__image" src="${product.image.mobile}" width="654" height="424" alt="${product.name}">`
+                  : `<img class="product-card__image product-card__image--border" src="${product.image.mobile}" width="654" height="424" alt="${product.name}">`
+                  }
                 </picture>
                 ${ product.quantity === 0
                   ? `<button class="product-card__btn flex product-btn-js">
@@ -35,12 +38,16 @@ fetch('/data.json')
                       <span>Add to Cart</span>
                     </button>`
                   : `<div class="quantity-controls flex">
-                      <button class="decrease-btn">
-                        <img src="assets/images/icon-decrement-quantity.svg" alt="">
+                      <button class="decrease-btn flex">
+                        <svg class="icon" viewBox="0 0 10 2">
+                          <path d="M0 .375h10v1.25H0V.375Z" />
+                        </svg>
                       </button>
                         <span>${product.quantity}</span>
-                      <button class="increase-btn">
-                        <img src="assets/images/icon-increment-quantity.svg" alt="">
+                      <button class="increase-btn flex">
+                        <svg class="icon" viewBox="0 0 10 10">
+                          <path d="M10 4.375H5.625V0h-1.25v4.375H0v1.25h4.375V10h1.25V5.625H10v-1.25Z" />
+                        </svg>
                       </button>
                     </div>`
                 }

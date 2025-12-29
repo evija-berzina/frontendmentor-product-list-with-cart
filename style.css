@@ -72,7 +72,7 @@
 *::before,
 *::after {
   box-sizing: border-box;
-  outline: 1px solid red;
+  /* outline: 1px solid red; */
 }
 
 /* Reset margins */
@@ -170,6 +170,12 @@ select {
 
 .product-card__image {
   border-radius: 10px;
+  object-fit: contain;
+}
+
+.product-card__image--border {
+  outline: solid 2px hsl(var(--clr-red));
+  outline-offset: -2px;
 }
 
 .product-card__btn,
@@ -185,21 +191,51 @@ select {
   border: solid 1px hsl(var(--clr-rose500));
   color: hsl(var(--clr-rose900));
   font-weight: var(--fw-600);
+  font-size: var(--fs-200);
   background-color: hsl(var(--clr-rose50));
   cursor: pointer;
+  width: 10rem;
+}
+
+.product-card__btn:hover {
+  outline: solid 2px hsl(var(--clr-red));
+  outline-offset: -2px;
+  color: hsl(var(--clr-red));
 }
 
 .quantity-controls {
   background-color: hsl(var(--clr-red));
   color: hsl(var(--clr-rose50));
+  justify-content: space-between;
+  align-items: center;
+  padding-inline: 0.75rem;
 }
 
 .decrease-btn,
 .increase-btn {
   background-color: hsl(var(--clr-red));
-  border: solid 1px hsl(var(--clr-rose50));
+  border: solid 2px hsl(var(--clr-rose50));
   aspect-ratio: 1;
+  height: 1rem;
   border-radius: 50%;
+  justify-items: center;
+  align-items: center;
+  padding: .1rem;
+  cursor: pointer;
+}
+
+.icon {
+  fill: hsl(var(--clr-rose50));
+}
+
+.decrease-btn:hover,
+.increase-btn:hover {
+  background-color: hsl(var(--clr-rose50));
+}
+
+.decrease-btn:hover .icon,
+.increase-btn:hover .icon {
+  fill: hsl(var(--clr-red));
 }
 
 .product-card__btn span {
