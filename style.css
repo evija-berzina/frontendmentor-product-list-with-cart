@@ -264,6 +264,7 @@ select {
 }
 
 .cart {
+  flex-direction: column;
   background-color: hsl(var(--clr-rose50));
   padding: 1.5rem;
   border-radius: 10px;
@@ -275,6 +276,20 @@ select {
 }
 
 .cart__img {
+  padding-inline: 5rem;
+}
+
+
+.product-cart-info {
+  flex-direction: column;
+  
+}
+
+.cart-product-container {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: solid 1px hsl(var(--clr-rose100));
   padding-block: 1rem;
 }
 
@@ -283,6 +298,103 @@ select {
   font-size: var(--fs-200);
   font-weight: var(--fw-600);
   color: hsl(var(--clr-rose500));
+}
+
+.cart-remove-btn {
+  background-color: transparent;
+  border: solid 2px hsl(var(--clr-rose400));
+  aspect-ratio: 1;
+  height: 1rem;
+  border-radius: 50%;
+  justify-self: center;
+  align-self: center;
+  padding: .1rem;
+  cursor: pointer;
+}
+
+.remove-icon {
+  fill: hsl(var(--clr-rose400));
+}
+
+.cart-text-container {
+  flex-direction: column;
+  gap: .5rem;
+}
+
+.cart-item-info {
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.cart-product__name {
+  color: hsl(var(--clr-rose900));
+  font-weight: var(--fw-600);
+}
+
+.cart-product__quantity {
+  color: hsl(var(--clr-red));
+  font-weight: var(--fw-600);
+}
+
+.cart-product__price {
+  color: hsl(var(--clr-rose300));
+}
+
+.cart-product__total {
+  color: hsl(var(--clr-rose400));
+  font-weight: var(--fw-600);
+}
+
+.cart-total {
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.cart-total__text {
+  color: hsl(var(--clr-rose500));
+  font-weight: var(--fw-600);
+}
+
+.cart-total__sum {
+  color: hsl(var(--clr-rose900));
+  font-weight: var(--fw-700);
+}
+
+.cart__carbon-info {
+  flex-direction: row;
+  background-color: hsl(var(--clr-rose100));
+  padding-block: 1rem;
+  padding-inline: 1rem;
+  border-radius: 10px;
+}
+
+.carbon-icon {
+  fill: hsl(var(--clr-green))
+}
+
+.carbon-info {
+  color: hsl(var(--clr-rose900));
+  font-size: var(--fs-200);
+}
+
+.carbon-info span {
+  font-weight: var(--fw-700);
+}
+
+.cart__confirm-btn {
+  justify-content: center;
+  border: none;
+  background-color: hsl(var(--clr-red));
+  color: hsl(var(--clr-rose50));
+  font-weight: var(--fw-600);
+  padding-block: 1rem;
+  border-radius: 3rem;
+  cursor: pointer;
+}
+
+.product-cart-container {
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
 @media (min-width: 35rem) {
