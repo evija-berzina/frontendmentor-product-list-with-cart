@@ -12,6 +12,7 @@ fetch('/data.json')
 
       const productCard = document.querySelector('.products-js');
       const cart = document.querySelector('.cart-js');
+      const order = document.querySelector('.order-js')
 
       renderProducts(products);
       renderCart(products);
@@ -167,10 +168,12 @@ fetch('/data.json')
         const cartProduct = document.querySelector('.cart-js');
 
         cartProduct.addEventListener('click', (event) => {
-          // console.log('hei');
-          const card = event.target.closest('.cart-product-container');
+          if (event.target.closest('.cart__confirm-btn')) {
+            renderConfirmedOrders(products);
+          }
 
-          if (!card) return;
+          const card = event.target.closest('.cart-product-container');
+           if (!card) return;
 
           const productId = Number(card.dataset.id);
           const product = products.find(p => p.id === productId);
@@ -182,5 +185,39 @@ fetch('/data.json')
           renderProducts(products);
           renderCart(products);
           productCartInfo(products);
-    });
+        });
+
+        function renderConfirmedOrders(products) {
+          //console.log('sup')
+          let orderHTML = '';
+          //const total = totalQuantity(products);
+
+          const product = products.filter(p => p.quantity > 0);
+          product.forEach(p => {
+            orderHTML += `
+              <h2>Order<br/>Confirmed</h2>
+              <p>We hope you enjoy your food!</p>
+              <div>
+                <div>
+                  <img class="product-card__image" src="${p.image.thumbnail}" width="654" height="424" alt="${p.name}">
+                  <div class="cart-text-container flex">
+                    <p class ="cart-product__name">${p.name}</p>
+                  </div>
+                  <div class="cart-item-info flex">
+                    <p class="cart-product__quantity">${p.quantity}x</p>
+                    <p class="cart-product__price">@ $${p.price}</p>
+                  </div>
+                  <p class="cart-product__total">$${p.quantity * p.price}</p>
+                </div>  
+                <div class="cart-total flex">
+                  <p class="cart-total__text">Order total:</p>
+                  <p class="cart-total__sum">$</p>
+                </div>
+              </div>
+              <button>
+                Start New Order
+              </button>`
+            order.innerHTML = orderHTML;
+          });
+        }
 });
