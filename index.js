@@ -142,7 +142,7 @@ fetch('/data.json')
           products.forEach(product => {
             if (product.quantity > 0) {
               cartProductsHTML += `
-              <article class="cart-product-container flex">
+              <article class="cart-product-container flex" data-id="${product.id}">
                 <div class="cart-text-container flex">
                   <p class ="cart-product__name">${product.name}</p>
                   <div class="cart-item-info flex">
@@ -164,4 +164,23 @@ fetch('/data.json')
             cartProducts.innerHTML = cartProductsHTML;
         }
       
+        const cartProduct = document.querySelector('.cart-js');
+
+        cartProduct.addEventListener('click', (event) => {
+          // console.log('hei');
+          const card = event.target.closest('.cart-product-container');
+
+          if (!card) return;
+
+          const productId = Number(card.dataset.id);
+          const product = products.find(p => p.id === productId);
+
+          if (event.target.closest('.cart-remove-btn')) {
+            product.quantity = 0;
+          }
+
+          renderProducts(products);
+          renderCart(products);
+          productCartInfo(products);
+    });
 });
