@@ -397,6 +397,41 @@ select {
   gap: 1.5rem;
 }
 
+.order-icon {
+  fill: hsl(var(--clr-green));
+}
+
+.order {
+  background-color: hsl(var(--clr-rose50));
+  border-radius: 10px;
+  position: fixed;
+  top: 5.5rem;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding-inline: 1.5rem;
+  padding-block-start: 2.5rem;
+  padding-block-end: 1.5rem;
+}
+
+.order-total-products {
+  padding-inline: 1.5rem;
+  background-color: hsl(var(--clr-rose100));
+  border-radius: 5px;
+}
+
+.order-products {
+  flex-direction: row;
+  gap: 1rem;
+  justify-content: space-between;
+  padding-block: 1.5rem;
+  border-bottom: solid 1px hsl(var(--clr-rose300));
+}
+
+.order-product-info {
+  flex-direction: column;
+}
+
 @media (min-width: 35rem) {
 
 }
