@@ -21,7 +21,6 @@ fetch('./data.json')
         let productsHTML = '';
 
         products.forEach((product) => {
-          // const product = data[index];
           productsHTML += `
             <article class="product-card" data-id="${product.id}">
               <div class="product-card__img-container flex">

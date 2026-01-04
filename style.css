@@ -4,7 +4,7 @@
 
 :root {
   /* colors */
-  --clr-red: 14 86% 42%;
+  --clr-red: 13 82% 31%;
   --clr-green: 159 69% 38%;
 
   --clr-rose50: 20 50% 98%;
@@ -20,7 +20,6 @@
   --fs-600: 1.25rem;
   --fs-500: 1rem;
   --fs-400: 0.9375rem;
-  --fs-300: 1rem;
   --fs-200: 0.85rem;
   --fs-100: 0.75rem;
 
@@ -72,7 +71,6 @@
 *::before,
 *::after {
   box-sizing: border-box;
-  /* outline: 1px solid red; */
 }
 
 /* Reset margins */
@@ -101,14 +99,10 @@ p {
 /* set up the body */
 body {
   font-family: var(--ff-red-hat-text);
-  font-size: var(--fs-300);
+  font-size: var(--fs-500);
   color: hsl(var(--clr-rose900));
   background-color: hsl(var(--clr-rose100));
-  font-weight: var(--fw-700);
   padding: 1.5rem;
-
-  /* display: grid;
-  grid-template-rows: min-content 1fr; */
 }
 
 /* make images easier to work with */
@@ -150,15 +144,26 @@ select {
 /* --------------------------- */
 /* Components                  */
 /* --------------------------- */
+main {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "title"
+    "products"
+    "cart";
+}
 
 .title {
-  padding-block-end: 1.5rem;
+  grid-area: title;
   color: hsl(var(--clr-rose900));
   font-weight: var(--fw-700);
 }
 
 .products {
-  flex-direction: column;
+  grid-area: products;
+  display: grid;
+  grid-template-columns: 1fr;
   gap: 1.5rem;
 }
 
@@ -184,21 +189,22 @@ select {
   justify-content: space-between;
   align-self: center;
   gap: 0.5rem;
-  padding-inline: 1.3rem;
+  padding-inline: 1.2rem;
   padding-block: 0.6rem;
   border-radius: 2rem;
-  border: solid 1px hsl(var(--clr-rose500));
+  border: none;
+  box-shadow: 0 0 0 1px hsl(var(--clr-rose500));
   color: hsl(var(--clr-rose900));
   font-weight: var(--fw-600);
   font-size: var(--fs-200);
   background-color: hsl(var(--clr-rose50));
   cursor: pointer;
   width: 8.5rem;
+  transition: box-shadow 300ms ease, color 300ms ease;
 }
 
 .product-card__btn:hover {
-  outline: solid 2px hsl(var(--clr-red));
-  outline-offset: -2px;
+  box-shadow: 0 0 0 2px hsl(var(--clr-red));
   color: hsl(var(--clr-red));
 }
 
@@ -226,6 +232,7 @@ select {
   align-items: center;
   padding: .1rem;
   cursor: pointer;
+  transition: background-color 200ms ease;
 }
 
 .icon {
@@ -251,7 +258,6 @@ select {
   flex-direction: column;
   gap: 0.25rem;
   padding-block-start: 2rem;
-  padding-block-end: 1.25rem;
 }
 
 .product-card__category {
@@ -276,6 +282,8 @@ select {
   background-color: hsl(var(--clr-rose50));
   padding: 1.5rem;
   border-radius: 10px;
+  grid-area: cart;
+  align-self: start;
 }
 
 .cart__title {
@@ -314,14 +322,24 @@ select {
   aspect-ratio: 1;
   height: 1rem;
   border-radius: 50%;
-  justify-self: center;
-  align-self: center;
   padding: .1rem;
   cursor: pointer;
+  justify-self: center;
+  align-self: center;
+  transition: border-color 200ms ease;
 }
 
 .remove-icon {
   fill: hsl(var(--clr-rose300));
+  transition: fill 200ms ease;
+}
+
+.cart-remove-btn:hover {
+  border-color: hsl(var(--clr-red));
+}
+
+.cart-remove-btn:hover .remove-icon {
+  fill: hsl(var(--clr-red));
 }
 
 .cart-text-container {
@@ -408,6 +426,12 @@ select {
   padding-block: 1rem;
   border-radius: 3rem;
   cursor: pointer;
+  transition: background-color 200ms ease;
+}
+
+.cart__confirm-btn:hover,
+.new-order-btn:hover {
+  background-color: hsl(var(--clr-red)/ 0.85);
 }
 
 .product-cart-container {
@@ -497,42 +521,50 @@ select {
 }
 
 @media (min-width: 35rem) {
+  body {
+    padding: 3rem;
+  }
 
+  main {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "title title"
+      "products products"
+      "cart cart";
+  }
+
+  .products {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .order {
+    max-width: 30rem;
+    margin-inline: auto;
+    bottom: 5.25rem;
+    left: 1rem;
+    right: 1rem;
+    border-radius: 10px;
+  }
 }
 
-@media (min-width: 45rem) {
+@media (min-width: 64rem) {
   main {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 22rem;
-    gap: 2rem;
+    grid-template-columns: 1fr 1fr 22rem;
+    grid-template-areas:
+      "title title cart"
+      "products products cart";
+  }
+}
 
+@media (min-width: 80rem) {
+  main {
+    grid-template-columns: 1fr 1fr 1fr 22rem;
     grid-template-areas:
       "title title title cart"
       "products products products cart";
   }
 
-  .title {
-    grid-area: title;
-  }
-
   .products {
-    grid-area: products;
-    display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
   }
-
-  .cart {
-    grid-area: cart;
-    align-self: start;
-  }
-
-  .order {
-  border-radius: 10px;
-  top: 5rem;
-  bottom: 5rem;
-  left: 25rem;
-  right: 25rem;
-}
-
 }
